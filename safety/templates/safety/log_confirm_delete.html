@@ -1,0 +1,15 @@
+{% extends 'safety/base.html' %}
+
+{% block title %}삭제 확인{% endblock %}
+
+{% block content %}
+    <h1>점검 기록 삭제 확인</h1>
+    <p>"{{ log.item.question }}"에 대한 "{{ log.checked_at|date:"Y-m-d H:i" }}"의 점검 기록을 정말로 삭제하시겠습니까?</p>
+    <p>이 작업은 되돌릴 수 없습니다.</p>
+
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-danger">네, 삭제합니다.</button>
+        <a href="{% url 'equipment_detail' pk=log.equipment.pk %}" class="btn btn-secondary">아니요, 취소합니다.</a>
+    </form>
+{% endblock %}

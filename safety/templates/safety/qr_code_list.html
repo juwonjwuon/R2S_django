@@ -1,0 +1,21 @@
+{% extends 'safety/base.html' %}
+
+{% block title %}QR 코드 인쇄{% endblock %}
+
+{% block content %}
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <h1>장비 QR 코드 목록 (인쇄용)</h1>
+        <button onclick="window.print()" class="btn btn-primary d-print-none">이 페이지 인쇄하기</button>
+    </div>
+    <p class="d-print-none">이 페이지를 인쇄(Ctrl+P)하여 코팅 후 사용하세요.</p>
+    <hr>
+    <div class="row">
+        {% for item in qr_codes_data %}
+        <div class="col-md-4 text-center border p-3 mb-4" style="page-break-inside: avoid;">
+            <h4>{{ item.name }}</h4>
+            <p>{{ item.id_str }}</p>
+            <img src="data:image/png;base64,{{ item.qr_image_b64 }}" alt="{{ item.name }} QR Code" width="200">
+        </div>
+        {% endfor %}
+    </div>
+{% endblock %}

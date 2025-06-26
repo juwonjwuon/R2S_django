@@ -1,0 +1,17 @@
+{% extends 'safety/base.html' %}
+
+{% block title %}장비 목록{% endblock %}
+
+{% block content %}
+    <h1>장비 목록</h1>
+    <div class="list-group">
+        {% for equipment in equipments %}
+            <a href="{% url 'equipment_detail' pk=equipment.pk %}" class="list-group-item list-group-item-action">
+                <div class="d-flex w-100 justify-content-between">
+                    <h5 class="mb-1">{{ equipment.name }}</h5>
+                </div>
+                <p class="mb-1">{{ equipment.category }}</p>
+            </a>
+        {% endfor %}
+    </div>
+{% endblock %}
